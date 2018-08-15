@@ -1,17 +1,22 @@
 from flask import Flask
 from flask import make_response
+from flask import request
+from flask import render_template
+from flask_bootstrap import Bootstrap
+
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
 
 
 @app.route("/")
 def index():
-    response=make_response("<h1>Hello World3!</h>")
-    return response
+
+    return render_template("index.html")
 
 
 @app.route("/user/<name>")
 def user(name):
-    return "<h1>Hello, %s!" % name
+    return render_template("user.html", name=name)
 
 
 if __name__ == "__main__":
