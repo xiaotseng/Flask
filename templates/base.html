@@ -1,6 +1,11 @@
 {% extends "bootstrap/base.html" %} 
-{% block title %}Flask{% endblock %} 
+{% block head %}
+{{super()}}
+<link rel="shortcut icon" href="{{url_for('static',filename='iii.jpg')}}">
+<link rel="icon" href="{{url_for('static',filename='iii.jpg')}}">
+{% endblock %}
 {% block navbar %}
+{{super()}}
 <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
