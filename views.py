@@ -1,5 +1,6 @@
 from flask import make_response, render_template, request,redirect,url_for,session,g
 from werkzeug.utils import secure_filename
+import datetime
 import os
 def view(app):
     #第一次请求
@@ -7,10 +8,16 @@ def view(app):
     def before_first_request():
         pass
 
+    @app.before_request
+    def before_request():
+        g.current_time=datetime.datetime.utcnow()
+        print("请求")
+
     #没有找到页面
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('404.html'), 404
+        
 
     #服务器错误
     @app.errorhandler(500)
@@ -37,8 +44,9 @@ def view(app):
                 session["result"]="file null"
                 return redirect(url_for('upload'))
             else:
+                filename=f.filename
                 basepath=os.path.dirname(__file__)#当前文件目录
-                upload_path=os.path.join(basepath,'uploads',secure_filename(f.filename))
+                upload_path=os.path.join(basepath,'uploads',secure_filename(filename))
                 f.save(upload_path)
                 session["result"]="succeed"
                 return redirect(url_for('upload'))     

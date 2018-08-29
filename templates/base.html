@@ -1,13 +1,24 @@
 {% extends "bootstrap/base.html" %} 
+
 {% block head %}
 {{super()}}
 <link rel="shortcut icon" href="{{url_for('static',filename='iii.jpg')}}">
 <link rel="icon" href="{{url_for('static',filename='iii.jpg')}}">
 {% endblock %}
+
 {% block title %}
 {{super()}}
 ZenglingJun
 {% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+{{moment.include_moment()}}
+{{moment.lang('zh-CN')}}
+{% endblock%}
+
+
 {% block navbar %}
 {{super()}}
 <div class="navbar navbar-inverse" role="navigation">
@@ -30,7 +41,9 @@ ZenglingJun
                     <a href="/upload">Upload</a>
                 </li>
             </ul>
+            <div style="color:aliceblue;float: right;height: 100%;margin-top: 20px">服务器时间：{{moment(g.current_time).format("LLL")}}</div>
         </div>
+        
     </div>
 </div>
 {% endblock %}
