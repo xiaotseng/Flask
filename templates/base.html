@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 {% extends "bootstrap/base.html" %} 
 {% block head %}
 {{super()}}
 <link rel="shortcut icon" href="{{url_for('static',filename='iii.jpg')}}">
 <link rel="icon" href="{{url_for('static',filename='iii.jpg')}}">
+=======
+{% extends "bootstrap/base.html" %}
+{% block title %}
+{{super()}}
+ZenglingJun
+>>>>>>> 98d6177a93bf6421a890db09a7400f4f85e39fa8
 {% endblock %}
 {% block navbar %}
 {{super()}}
@@ -21,6 +28,9 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/upload">Upload</a>
                 </li>
             </ul>
         </div>
