@@ -1,14 +1,30 @@
 {% extends "base.html" %} {% block title %}{{super()}}-Upload {% endblock %} 
+
+{% block scripts %}
+{{super()}}
+{% endblock %}
+
 {% block content %}
 {{super()}}
+<script>
+     function html5Reader(file){
+     var file = file.files[0];
+     var reader = new FileReader();
+     reader.onload = function(e){
+         var pic = document.getElementById("img");
+         pic.src=reader.result;
+     };
+     reader.readAsDataURL(file);
+     }
+
+</script>
 <div class="container">
     <form action="" enctype='multipart/form-data' method='POST' class="form-inline">
         <div class="form-group form-control">
-            <input type="file" name="file">
+            <input type="file" name="file" onchange="html5Reader(this)" id="file">
         </div>
-        <input type="submit" value="上传" class="btn btn-default">
-        {{result}}
+        <input type="submit" value="上传" class="btn btn-default"> {{result}}
     </form>
-    
+    <img id="img" width="800" height="600" >
 </div>
 {% endblock %}
