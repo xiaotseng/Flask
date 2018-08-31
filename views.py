@@ -11,7 +11,7 @@ def view(app):
     @app.before_request
     def before_request():
         g.current_time=datetime.datetime.utcnow()
-        print("请求")
+        #print("请求")
 
     #没有找到页面
     @app.errorhandler(404)
