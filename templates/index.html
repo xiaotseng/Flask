@@ -1,8 +1,36 @@
-{% extends "base.html" %}
-{% block title %} 主页 {% endblock %} 
-{% block content %}
+{% extends "base.html" %} {% block title %} {{super()}}AJAX {% endblock %} {% block head %} {{super()}}
+<script>
+    var data = {
+        name: "zlj",
+        age: 36,
+    };
+    //请求json
+    function getJson(env) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function (ev) {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("serverContent").innerHTML += xmlhttp.response;
+            }
+            console.log(xmlhttp.status);
+
+        };
+        xmlhttp.open("post", "/getjson", true);
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        var da = JSON.stringify(data);
+        xmlhttp.send(da);
+    }
+
+    window.addEventListener("load", function () {
+        document.getElementById("getJson").addEventListener("click", getJson);
+
+    });
+
+
+</script> {% endblock %} {% block content %}
 <div class="container">
-    <h1>Hello world</h1>
+    <h1>AJAX</h1>
+    <button id="getJson">向服务器发起请求</button>
+    <div id="serverContent"></div>
 </div>
 
 {% endblock %}
