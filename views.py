@@ -62,8 +62,12 @@ def view(app):
     # AJAX请求/////////////////////////////
     @app.route("/getjson", methods=['POST', 'GET'])
     def returnJson():
-        requestData = json.loads(request.data)
+
+        requestData = json.loads(request.data.decode())
         print("GetJsonRequst:", requestData["name"])
         return "你好"+requestData["name"]#effkkkk
-        
+
+
+
+
     return app
