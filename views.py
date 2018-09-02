@@ -64,6 +64,6 @@ def view(app):
     def returnJson():
         requestData = json.loads(request.data)
         print("GetJsonRequst:", requestData["name"])
-        return "你好"+requestData["name"]
+        return "你好"+requestData["name"]#effkkkk
         
     return app
