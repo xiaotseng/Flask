@@ -7,21 +7,25 @@
 {% block content %}
 {{super()}}
 <script>
-     function html5Reader(file){
+     function html5Reader(file,img){
      var file = file.files[0];
      var reader = new FileReader();
      reader.onload = function(e){
-         var pic = document.getElementById("img");
-         pic.src=reader.result;
+         img.src=reader.result;
      };
      reader.readAsDataURL(file);
      }
+window.addEventListener("load",function(){
+    alert("加载完成");
+    
+    document.getElementById("file").addEventListener("change",function(){html5Reader(this,document.getElementById("img"));});
 
+    });
 </script>
 <div class="container">
     <form action="" enctype='multipart/form-data' method='POST' class="form-inline">
         <div class="form-group form-control">
-            <input type="file" name="file" onchange="html5Reader(this)" id="file">
+            <input type="file" name="file"  id="file">
         </div>
         <input type="submit" value="上传" class="btn btn-default"> {{result}}
     </form>

@@ -1,8 +1,10 @@
 #encoding: utf-8
+import sys
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from views import view
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'kfeefeuplkmmnkl'
 bootstrap = Bootstrap(app)

@@ -13,12 +13,10 @@ def view(app):
         g.current_time=datetime.datetime.utcnow()
         print("请求")
 
-    #没有找到页面
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('404.html'), 404
         
-
     #服务器错误
     @app.errorhandler(500)
     def internal_server_error(e):
