@@ -1,4 +1,4 @@
-from flask import make_response, render_template, request, redirect, url_for, session, g
+from flask import make_response, render_template, request, redirect, url_for, session, g,Response
 from werkzeug.utils import secure_filename
 import json
 import datetime
@@ -62,12 +62,13 @@ def view(app):
     # AJAX请求/////////////////////////////
     @app.route("/getjson", methods=['POST', 'GET'])
     def returnJson():
-
         requestData = json.loads(request.data.decode())
         print("GetJsonRequst:", requestData["name"])
-        return "你好"+requestData["name"]#effkkkk
+        return "你好"+requestData["name"]
 
-
-
-
+    #websocket测试页面
+    @app.route('/websocket')
+    def websocket():
+        return render_template("WebSocketTest.html")
+        pass
     return app

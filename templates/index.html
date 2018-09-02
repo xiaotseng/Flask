@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %} {{super()}}AJAX {% endblock %} {% block head %} {{super()}}
 <script>
     var data = {
-        name: "zlj",
+        name: "曾令君",
         age: 36,
     };
     //请求json
@@ -9,7 +9,10 @@
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function (ev) {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("serverContent").innerHTML += xmlhttp.response;
+                var newElement=document.createElement("div");
+                newElement.innerHTML=xmlhttp.response;
+
+                document.getElementById("serverContent").appendChild(newElement);
             }
             console.log(xmlhttp.status);
 

@@ -8,12 +8,12 @@
 {{super()}}
 <script>
      function html5Reader(file,img){
-     var file = file.files[0];
+     var file1 = file.files[0];
      var reader = new FileReader();
      reader.onload = function(e){
          img.src=reader.result;
      };
-     reader.readAsDataURL(file);
+     reader.readAsDataURL(file1);
      }
 window.addEventListener("load",function(){
     alert("加载完成");
@@ -29,6 +29,6 @@ window.addEventListener("load",function(){
         </div>
         <input type="submit" value="上传" class="btn btn-default"> {{result}}
     </form>
-    <img id="img" width="800" height="600" >
+    <img id="img" width="800" height="600" src="">
 </div>
 {% endblock %}
