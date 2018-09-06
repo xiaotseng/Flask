@@ -6,11 +6,10 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from views import view
 
-
+test="fefefeffff"
 app = Flask(__name__,static_folder="./static",template_folder="./templates")
 app.config['SECRET_KEY'] = 'kfeefeuplkmmnkl'
-#ctx=app.app_context()
-#ctx.push()
+
 
 
 bootstrap = Bootstrap(app)

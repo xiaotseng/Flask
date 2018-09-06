@@ -1,5 +1,5 @@
 #encoding: utf-8
-from flask import make_response, render_template, request, redirect, url_for, session, g,Response,current_app
+from flask import make_response, render_template, request, redirect, url_for, session, g,Response
 from werkzeug.utils import secure_filename
 import json
 import datetime
@@ -8,22 +8,23 @@ import os
 def addToFrontPage(displayName):
     def wrapper(func):
         def inwrapper(*args, **kwargs):#真实执行
-            #current_app.frontPageList[displayName]=func.__name__
             print("装饰器")
             return func(*args, **kwargs)
         return inwrapper
     return wrapper
 
+#放抬头的页面
+frontPageDic={"首页":"/","上传":"/upload","WebSocket":"/websocket"}
+#设置路由
 def view(app):
     # 第一次请求
-    #current_app.frontPageList={}
-    
     @app.before_first_request
     def before_first_request():
         pass
 
     @app.before_request
     def before_request():
+        g.frontPageList=frontPageDic
         g.current_time = datetime.datetime.utcnow()
         print("有请求")
 
@@ -39,9 +40,7 @@ def view(app):
         return render_template('500.html'), 500
 
     # 首页
-
     @app.route("/")
-    @addToFrontPage("主页")
     def index():
         return render_template("index.html")
 
@@ -52,7 +51,7 @@ def view(app):
 
     # 上传
     @app.route("/upload", methods=['POST', 'GET'])
-    @addToFrontPage("上传")
+    #@addToFrontPage("上传")
     def upload():
         if request.method == 'POST':
             f = request.files.get("file", None)
