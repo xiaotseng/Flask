@@ -1,12 +1,23 @@
-from flask import make_response, render_template, request, redirect, url_for, session, g,Response
+#encoding: utf-8
+from flask import make_response, render_template, request, redirect, url_for, session, g,Response,current_app
 from werkzeug.utils import secure_filename
 import json
 import datetime
 import os
 
+def addToFrontPage(displayName):
+    def wrapper(func):
+        def inwrapper(*args, **kwargs):#真实执行
+            #current_app.frontPageList[displayName]=func.__name__
+            print("装饰器")
+            return func(*args, **kwargs)
+        return inwrapper
+    return wrapper
 
 def view(app):
     # 第一次请求
+    #current_app.frontPageList={}
+    
     @app.before_first_request
     def before_first_request():
         pass
@@ -30,6 +41,7 @@ def view(app):
     # 首页
 
     @app.route("/")
+    @addToFrontPage("主页")
     def index():
         return render_template("index.html")
 
@@ -40,6 +52,7 @@ def view(app):
 
     # 上传
     @app.route("/upload", methods=['POST', 'GET'])
+    @addToFrontPage("上传")
     def upload():
         if request.method == 'POST':
             f = request.files.get("file", None)

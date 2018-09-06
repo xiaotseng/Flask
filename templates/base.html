@@ -34,12 +34,10 @@ ZenglingJun
         </div>
         <div class="navbar-collapse">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/upload">Upload</a>
-                </li>
+                {% for element in current_app.frontPageList.keys() %}
+                        <a href="">{{element}}</a>
+                        
+                {% endfor %}
             </ul>
             <div style="color:aliceblue;float: right;height: 100%;margin-top: 20px">服务器时间：{{moment(g.current_time).format("LLL")}}</div>
         </div>
