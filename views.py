@@ -1,9 +1,14 @@
 #encoding: utf-8
-from flask import make_response, render_template, request, redirect, url_for, session, g,Response
-from werkzeug.utils import secure_filename
-import json
 import datetime
+import json
 import os
+
+from flask import (Response, g, make_response, redirect, render_template,
+                   request, session, url_for)
+from werkzeug.utils import secure_filename
+
+from appCreator import app
+
 
 def addToFrontPage(displayName):
     def wrapper(func):
@@ -84,3 +89,8 @@ def view(app):
         return render_template("WebSocketTest.html")
         pass
     return app
+
+if __name__=="__main__":
+    pass
+else:
+    print("引入%s模块" % __name__)
