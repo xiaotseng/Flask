@@ -1,11 +1,13 @@
 #encoding: utf-8
 from flask_login import UserMixin
+from flask import Blueprint
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 
 from appCreator import app
 
 #数据库实例
 db=SQLAlchemy(app)
+#模型
 class User(db.Model,UserMixin):
     #用户数据表类
     __tablename__="users"

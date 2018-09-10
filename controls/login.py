@@ -3,7 +3,7 @@ from flask_login import LoginManager
 from appCreator import app
 
 #登陆管理器
-loginmanager=LoginManager(app)
+loginmanager=LoginManager()
 loginmanager.session_protection='strong'
 loginmanager.login_view='main.login'
 loginmanager.init_app(app)
